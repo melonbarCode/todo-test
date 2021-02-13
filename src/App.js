@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles/App.scss";
+import "../node_modules/antd/dist/antd.compact.css";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { useGlobalContext } from "./context/globalContext";
+import TodoSchedule from "./components/TodoSchedule/TodoSchedule";
+
+import TodoEditor from "./components/TodoEditor";
 
 function App() {
+  const [state, actions] = useGlobalContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path={`/`} exact component={TodoSchedule} />
+          <Route path={`/todo2`} exact component={TodoEditor} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
